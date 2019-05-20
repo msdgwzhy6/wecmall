@@ -1,0 +1,20 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: donghao
+ * Date: 2019-02-22
+ * Time: 13:36
+ */
+
+return [
+  'app_id' => '2019031963608366',
+  'app_id_1' => '2016102600764372',
+  'rsa_private_key' => 'MIIEpQIBAAKCAQEA+2nagcFgG9C8wbNAibEzFNrK/995yRX77mPtU1OhyIuuHhnGwxFFRMOKEfpbulPFXiWjda7MSU8lh0eUhmJI8bAG7FTZdSu/D+wlwm5sz97jCrhXeZUnoTE3Hy+VuGAhnq2xZVyh62uRsyMSxdhAjAv+l2B1U2LGGyXfg7g/QdzBBIOdn9KyYdjScd4grUbp0soLYh8kMKWmKWi7vdhmvGiVZjfiofIA/fnN5DQsWerc77fAtzJ+v5rebUD+mv2fQCLBbpAeN8LE/K+mtAe9alDBT8exo66qqoyIo/chSiIfiYoqkxoq802NzrnnubG4eKYS8d30eqOmf+4edi/qxwIDAQABAoIBAQCN0xbqX5XB2yy/8EiV5Bo2x34AfaaL4xTtU/2LJgB7yx/75vqTC+kRc2Ut4xdfsuYByCW/u02OhVFcUOreLA+OF4iwROUvDfCIIOTkG7rSQJ+/amIeOh/S9Jptw0AodEJC6yTJU0ocLeBRN5XdebJfzlxeNJG66ltq8SB3g7Zbhfg5hTZubR/RmntbiDw9fAQ7HpRiHQFK9ohnCVbyGn4QKK8BC30o7eYNgOUzQuWdEdgZ2wvpHauL/q2nEAQ9ENGGhVrqIQRDlPejwa7++p5m49OoOukyBQrlqA1VEDgJcSF6gI1gqRd5r238ex1q09oC8uFjY32Z4aTvvNZtvZVRAoGBAP5ysEjcpIXlD5GJUVkYjuXqwq3Q+qhAKn5tpGrUm/aYlnWABllsbvK50s4qHGj0AEZgF7s8/v/F9upSfb3m/JaOGicOD1gEa8HKC2eyJOfMaQ5qtJoGyXcLnZNa3q6/51UlPqQSZ5pY9y4fHmdrGXsMAe4SU2YIcA32/VxTGW4LAoGBAPzybTjmjdBRHjJzKwVHzJ/oggQqm7cBgLaMS0Z8kPxGLNd/huZzr9nEv4qhyXt3XrRWrwH479a2GNQIKmtWQJxmexjgvvChQ+f6uUcTqDczY+vQaGgOP496ExHVpxzmUV8+fKKQ/p98OSeOat0t42ScmCX+PRBlcBxQJaIH6ne1AoGAVMdJzT0W5DXp9gfWvuTb1+dcbiWPHrgicHV/rsigHo3As+2wL+NdJCqd/msxhBaocMpbnds462e+WVya4Mcxqcg3FoQswJrYfH0hR6+ndEQ7TL5o5lkUj0GjgxFn2LnADjKWqHwpYNf7o7ZinvqkRsc9bWFVwE1XaI++4yAc/PkCgYEA4BivZ2/rSBn11OBvxtfbk/hb5/EPz8zHCfO1ZRdLJBXP+IQFMfpgW2CSCfJYHMie4MrDdc3kPqdJy+AIJNxflbC9ckb7IxjcnpNkvnHN4EnpRqx3M2kcKrMOXgiZa2MpyGYF6cjnrMhTopXsW1QiV6rcqRxbYUFdV9gx3yGAOtkCgYEAhpclMvNHjaPPVcOHg4Jlok8h2UUW5ej748cvf4yh6Ql13Vg+MDHe7CnMAHzUmj6N4fryNjRjqSeWQlKCsT0F5YdOpmOEzdurJHdwmWfC+R/8qAJFL4NPqzciWwAFJgpwBFssHG1Y9zy7ngsR7hWUf7339h1TOD9xdZ0T6dxVDHg=',
+  'rsa_public_key' => 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqHcITNEApC0ddKXKu5ArroMwmUe4iDFXVY3qkWka85yf2LgnzxunTXrUv4sofvjYNPfAUFfqBEmKPvlx12Ql4yjUopThNvrj3DILwLoHL4MK8mrYjY+UkX0II+bKg4mFZXMNFVbXm5ISsKEfxqijTl1XNit1JFtPKxdLYHU/3QpZzeczi+78X2n4Dfl8vybZ1/RVklo6JIkL7zEh6P+SQpm585+8zom610LtJe4jMOazCRW43Zb1asBBopfTMT48eqthQr+MSJMe9H82xmMJqWQBhbx7YcnrodM0F65ckbkkxuP589kP86lUVVqeauXxN72Fpel2/oA8qLwwV3EaAwIDAQAB',
+  'rsa_public_key_1' => 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxI1zbWMNssizc+DvVs4X0B/BwQ91FkiIAaMObf/cqQpGsHZ80xatyLgXfWBGJvDaNrecx75Py4prmcl6bv1nqCMGE31ghz6+K61kELCV1kLfGb4sfF2BKW+wRti4ENlWCvwsFPhR/CEMKAf/Kwrfy1QtPvT6yMDAe+X3o4TkeYtaQVYcNDshOMnmDNxrZeYTBVCd/DfREzhSwMfhDO/G+7NzgOtIVHlQIVpQlI6M1xiR5d1eLGgL3mGm61UrRR76K+QtKA8O0+4EsYD2XUClgixVXcgskQ/8y//yNmFniYM2sdh+reN9l3uX5oqrOclqJGpu7dsYvIqHq2d8eZIXkwIDAQAB',
+  'app_secret' => '29a7809bc04fac72d8af77033eb8fafd',
+  'login_url' => 'https://api.weixin.qq.com/sns/jscode2session?appid=%s&secret=%s&js_code=%s&grant_type=authorization_code',
+  // 微信获取access_token的url地址
+  'access_token_url' => "https://api.weixin.qq.com/cgi-bin/token?" .
+    "grant_type=client_credential&appid=%s&secret=%s",
+];
