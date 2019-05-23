@@ -39,6 +39,8 @@ Route::delete('api/:version/category/:id', 'api/:version.Category/delCategory');
 
 // 获取Token路由
 Route::post('api/:version/token/app', 'api/:version.Token/getAppToken');
+Route::post('api/:version/token/login', 'api/:version.Token/login');
+Route::post('api/:version/token/register', 'api/:version.Token/register');
 Route::post('api/:version/token/user', 'api/:version.Token/getToken');
 Route::post('api/:version/token/verify', 'api/:version.Token/verifyToken');
 
