@@ -11,6 +11,7 @@ namespace app\api\service;
 
 use app\api\model\TbMember;
 use app\api\model\ThirdApp;
+use app\lib\enum\ScopeEnum;
 use app\lib\exception\TokenException;
 
 class AppToken extends Token
@@ -59,7 +60,8 @@ class AppToken extends Token
 				'errorCode' => 201
 			];
 		} else {
-			$scope = $app->scope;
+//			$scope = $app->scope;
+			$scope = ScopeEnum::User;
 			$uid = $app->id;
 			$values = [
 				'scope' => $scope,

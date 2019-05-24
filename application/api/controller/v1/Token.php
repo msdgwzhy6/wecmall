@@ -91,7 +91,8 @@ class Token
 		$dataArray = $validate->getDataByRule(input('post.'));
 
 		$app = new AppToken();
-		return $app->checkLogin($dataArray['username'], $dataArray['password']);
+		$result = $app->checkLogin($dataArray['username'], $dataArray['password']);
+		return $result;
 	}
 
 	/**
