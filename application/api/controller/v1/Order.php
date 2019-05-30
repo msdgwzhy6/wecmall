@@ -18,114 +18,116 @@ use app\api\validate\OrderPlace;
 use app\api\validate\PagingParameter;
 use app\lib\exception\OrderException;
 use app\lib\exception\SuccessMessage;
+use think\Log;
 
 class Order extends BaseController
 {
 
-  protected $beforeActionList = [
-    'checkExclusiveScope' => ['only' => 'placeOrder'],
-    'checkPrimaryScope' => ['only' => 'getDetail,getSummaryByUser']
-  ];
+	protected $beforeActionList = [
+		'checkExclusiveScope' => ['only' => 'placeOrder'],
+		'checkPrimaryScope' => ['only' => 'getDetail,getSummaryByUser']
+	];
 
-  /**
-   * 下单
-   * @return array
-   * @throws \app\lib\exception\ParameterException
-   * @throws \app\lib\exception\TokenException
-   * @throws \think\Exception
-   */
-  public function placeOrder()
-  {
-    (new OrderPlace())->goCheck();
+	/**
+	 * 下单
+	 * @return array
+	 * @throws \app\lib\exception\ParameterException
+	 * @throws \app\lib\exception\TokenException
+	 * @throws \think\Exception
+	 */
+	public function placeOrder()
+	{
+		(new OrderPlace())->goCheck();
 
-    $products = input('post.products/a');
-    $uid = TokenService::getCurrentUId();
-    $order = new OrderService();
-    $status = $order->place($uid, $products);
-    return $status;
-  }
+		$products = input('post.products/a');
+		$uid = TokenService::getCurrentUId();
+		$order = new OrderService();
+		$status = $order->place($uid, $products);
+		return $status;
+	}
 
-  /**
-   * 获取订单列表信息
-   * @param int $page
-   * @param int $size
-   * @return array
-   * @throws \app\lib\exception\ParameterException
-   * @throws \app\lib\exception\TokenException
-   * @throws \think\Exception
-   */
-  public function getSummaryByUser($page = 1, $size = 15)
-  {
-    (new PagingParameter())->goCheck();
-    $uid = TokenService::getCurrentUId();
+	/**
+	 * 获取订单列表信息
+	 * @param int $page
+	 * @param int $size
+	 * @return array
+	 * @throws \app\lib\exception\ParameterException
+	 * @throws \app\lib\exception\TokenException
+	 * @throws \think\Exception
+	 */
+	public function getSummaryByUser($page = 1, $size = 15)
+	{
+		(new PagingParameter())->goCheck();
+		$uid = TokenService::getCurrentUId();
+		Log::record('getSummaryByUser' . $uid);
+		$pagingOrders = OrderModel::getSummaryByUser($uid, $page, $size);
+		if ($pagingOrders->isEmpty()) {
+			return [
+				'data' => [],
+				'current_page' => $page,
+			];
+		}
 
-    $pagingOrders = OrderModel::getSummaryByUser($uid, $page, $size);
-    if ($pagingOrders->isEmpty()) {
-      return [
-        'data' => [],
-        'current_page' => $page,
-      ];
-    }
+		return [
+			'data' => $pagingOrders->hidden(['snap_items', 'snap_address', 'prepay_id'])->toArray(),
+			'current_page' => $page,
+		];
+	}
 
-    return [
-      'data' => $pagingOrders->hidden(['snap_items', 'snap_address', 'prepay_id'])->toArray(),
-      'current_page' => $page,
-    ];
-  }
+	/**
+	 * 获取订单详情
+	 * @param $id
+	 * @return mixed
+	 * @throws OrderException
+	 * @throws \app\lib\exception\ParameterException
+	 */
+	public function getDetail($id)
+	{
+		(new IDMustBePositiveInt())->goCheck();
 
-  /**
-   * 获取订单详情
-   * @param $id
-   * @return mixed
-   * @throws OrderException
-   * @throws \app\lib\exception\ParameterException
-   */
-  public function getDetail($id)
-  {
-    (new IDMustBePositiveInt())->goCheck();
+		$orderDetail = OrderModel::get($id);
 
-    $orderDetail = OrderModel::get($id);
+		if (!$orderDetail) {
+			throw new OrderException();
+		}
+		return $orderDetail->hidden(['prepay_id']);
+	}
 
-    if (!$orderDetail) {
-      throw new OrderException();
-    }
-    return $orderDetail->hidden(['prepay_id']);
-  }
+	/**
+	 * 获取全部订单的简要信息
+	 * @param int $page
+	 * @param int $size
+	 * @return array
+	 * @throws \app\lib\exception\ParameterException
+	 */
+	public function getSummary($page = 1, $size = 20)
+	{
+		(new PagingParameter())->goCheck();
 
-  /**
-   * 获取全部订单的简要信息
-   * @param int $page
-   * @param int $size
-   * @return array
-   * @throws \app\lib\exception\ParameterException
-   */
-  public function getSummary($page = 1, $size = 20)
-  {
-    (new PagingParameter())->goCheck();
+		$pagingOrders = OrderModel::getSummaryByPage($page, $size);
+		if ($pagingOrders->isEmpty()) {
+			return [
+				'current_page' => $page,
+				'data' => []
+			];
+		}
+		$data = $pagingOrders->hidden(['snap_items', 'snap_address'])
+			->toArray();
 
-    $pagingOrders = OrderModel::getSummaryByPage($page, $size);
-    if ($pagingOrders->isEmpty()) {
-      return [
-        'current_page' => $page,
-        'data' => []
-      ];
-    }
-    $data = $pagingOrders->hidden(['snap_items', 'snap_address'])
-      ->toArray();
+		return [
+			'current_page' => $page,
+			'data' => $data
+		];
+	}
 
-    return [
-      'current_page' => $page,
-      'data' => $data
-    ];
-  }
-
-  public function delivery($id){
-    (new IDMustBePositiveInt())->goCheck();
-    $order = new OrderService();
-    $success = $order->delivery($id);
-    if($success){
-      return new SuccessMessage();
-    }
-  }
+	public function delivery($id)
+	{
+		(new IDMustBePositiveInt())->goCheck();
+		$order = new OrderService();
+		$success = $order->delivery($id);
+		if ($success) {
+			return new SuccessMessage();
+		}
+	}
 
 }

@@ -9,6 +9,7 @@
 namespace app\api\controller\v1;
 
 use app\api\service\Common as CommonService;
+use think\Log;
 
 class Common
 {
@@ -25,5 +26,14 @@ class Common
 		$result = $service->upload($file, $type);
 
 		return $result;
+	}
+
+	/**
+	 * 记录日志
+	 */
+	public function uploadLog(){
+		$content= input('post.');
+		Log::record($content);
+		return 'log success';
 	}
 }

@@ -60,11 +60,16 @@ Route::post('api/:version/pay/pre_order', 'api/:version.Pay/getPreOrder');
 Route::post('api/:version/pay/notify', 'api/:version.Pay/receiveNotify');
 Route::post('api/:version/pay/re_notify', 'api/:version.Pay/redirectNotify');
 
+
+Route::post('api/:version/alipay/notify', 'api/:version.AliPay/receiveNotify');
+
+
 // 获取区域相关路由
 Route::get('api/:version/area/list', 'api/:version.Area/getAreaList');
 Route::get('api/:version/area/all', 'api/:version.Area/getAllArea');
 
 // 公共接口部分
 Route::post('api/:version/common/upload', 'api/:version.Common/uploadFile');
+Route::post('api/:version/common/log', 'api/:version.Common/uploadLog');
 
 
